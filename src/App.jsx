@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { 
   Menu, X, ChevronRight, RefreshCw, Search, User, Bell, Home, 
-  Info, Briefcase, Mail, Plus, Image, Heart, Twitter, Facebook, 
-  Instagram, Github, Copyright, Calendar 
+  Info, Briefcase, Mail, Plus, Image
 } from 'lucide-react';
 
 // Navbar Component with Tailwind (same as before)
@@ -469,237 +468,8 @@ function Navbar({ type, extraButtons = [] }) {
   }
 }
 
-// Footer Component with different layout types
-function Footer({ type = 'Centered' }) {
-  const footerLinks = [
-    { id: 1, label: 'Home', href: '#' },
-    { id: 2, label: 'About', href: '#' },
-    { id: 3, label: 'Services', href: '#' },
-    { id: 4, label: 'Contact', href: '#' },
-    { id: 5, label: 'Privacy Policy', href: '#' },
-    { id: 6, label: 'Terms of Service', href: '#' },
-  ];
-
-  const socialLinks = [
-    { id: 'twitter', label: 'Twitter', icon: <Twitter className="w-4 h-4" />, href: '#' },
-    { id: 'facebook', label: 'Facebook', icon: <Facebook className="w-4 h-4" />, href: '#' },
-    { id: 'instagram', label: 'Instagram', icon: <Instagram className="w-4 h-4" />, href: '#' },
-    { id: 'github', label: 'GitHub', icon: <Github className="w-4 h-4" />, href: '#' },
-  ];
-
-  const Logo = () => (
-    <div className="flex items-center space-x-2">
-      <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
-        <span className="text-white font-bold text-sm">N</span>
-      </div>
-      <span className="font-bold text-lg text-gray-800">NavDemo</span>
-    </div>
-  );
-
-  const CopyrightText = () => (
-    <div className="flex items-center gap-1 text-gray-600 text-sm">
-      <Copyright className="w-3 h-3" />
-      <span>{new Date().getFullYear()} NavDemo. All rights reserved.</span>
-    </div>
-  );
-
-  const FooterLinks = ({ className = "" }) => (
-    <div className={`flex flex-wrap gap-4 ${className}`}>
-      {footerLinks.map((link) => (
-        <a
-          key={link.id}
-          href={link.href}
-          className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
-        >
-          {link.label}
-        </a>
-      ))}
-    </div>
-  );
-
-  const SocialIcons = ({ className = "" }) => (
-    <div className={`flex items-center gap-3 ${className}`}>
-      {socialLinks.map((social) => (
-        <a
-          key={social.id}
-          href={social.href}
-          className="text-gray-600 hover:text-purple-600 transition-colors p-2 hover:bg-gray-100 rounded-lg"
-          aria-label={social.label}
-        >
-          {social.icon}
-        </a>
-      ))}
-    </div>
-  );
-
-  const Newsletter = () => (
-    <div className="max-w-md">
-      <h4 className="font-medium text-gray-800 mb-2">Stay Updated</h4>
-      <div className="flex gap-2">
-        <input
-          type="email"
-          placeholder="Your email"
-          className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm"
-        />
-        <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
-          Subscribe
-        </button>
-      </div>
-    </div>
-  );
-
-  // Footer types
-  switch (type) {
-    case 'Left Aligned':
-      return (
-        <footer className="border-t bg-white mt-12">
-          <div className="w-screen px-4 sm:px-6 lg:px-8 py-8">
-            <div className="flex flex-col md:flex-row md:items-start gap-8">
-              {/* Left column - Logo and description */}
-              <div className="md:w-1/3">
-                <Logo />
-                <p className="text-gray-600 mt-3 text-sm">
-                  A demo application showcasing different navbar and footer layouts. 
-                  Built with React and Tailwind CSS.
-                </p>
-                <div className="mt-4">
-                  <CopyrightText />
-                </div>
-              </div>
-
-              {/* Middle column - Links */}
-              <div className="md:w-1/3">
-                <h3 className="font-medium text-gray-800 mb-4">Quick Links</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {footerLinks.slice(0, 4).map((link) => (
-                    <a
-                      key={link.id}
-                      href={link.href}
-                      className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-                <div className="mt-6">
-                  <SocialIcons />
-                </div>
-              </div>
-
-              {/* Right column - Newsletter */}
-              <div className="md:w-1/3">
-                <Newsletter />
-                <div className="mt-6">
-                  <div className="flex items-center gap-2 text-gray-600 text-sm">
-                    <Calendar className="w-4 h-4" />
-                    <span>Last updated: {new Date().toLocaleDateString()}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-      );
-
-    case 'Right Aligned':
-      return (
-        <footer className="border-t bg-white mt-12">
-          <div className="w-screen px-4 sm:px-6 lg:px-8 py-8">
-            <div className="flex flex-col md:flex-row md:items-start gap-8">
-              {/* Left column - Newsletter */}
-              <div className="md:w-1/3">
-                <Newsletter />
-                <div className="mt-6">
-                  <div className="flex items-center gap-2 text-gray-600 text-sm">
-                    <Calendar className="w-4 h-4" />
-                    <span>Last updated: {new Date().toLocaleDateString()}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Middle column - Links */}
-              <div className="md:w-1/3">
-                <h3 className="font-medium text-gray-800 mb-4">Quick Links</h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {footerLinks.slice(0, 4).map((link) => (
-                    <a
-                      key={link.id}
-                      href={link.href}
-                      className="text-gray-600 hover:text-purple-600 transition-colors text-sm"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
-                </div>
-                <div className="mt-6">
-                  <SocialIcons />
-                </div>
-              </div>
-
-              {/* Right column - Logo and copyright */}
-              <div className="md:w-1/3 md:text-right">
-                <div className="flex md:justify-end">
-                  <Logo />
-                </div>
-                <p className="text-gray-600 mt-3 text-sm md:text-right">
-                  A demo application showcasing different navbar and footer layouts.
-                </p>
-                <div className="mt-4 flex md:justify-end">
-                  <CopyrightText />
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-      );
-
-    case 'Simple':
-      return (
-        <footer className="border-t bg-white mt-12">
-          <div className="w-screen px-4 sm:px-6 lg:px-8 py-6">
-            <div className="flex flex-col items-center text-center space-y-4">
-              <Logo />
-              <FooterLinks className="justify-center" />
-              <SocialIcons />
-              <CopyrightText />
-            </div>
-          </div>
-        </footer>
-      );
-
-    case 'Centered':
-    default:
-      return (
-        <footer className="border-t bg-white mt-12">
-          <div className="w-screen px-4 sm:px-6 lg:px-8 py-8">
-            <div className="flex flex-col items-center text-center space-y-6">
-              <Logo />
-              <div className="max-w-2xl">
-                <p className="text-gray-600 text-sm">
-                  A demo application showcasing different navbar and footer layouts. 
-                  Built with React and Tailwind CSS.
-                </p>
-              </div>
-              <FooterLinks className="justify-center" />
-              <Newsletter />
-              <SocialIcons />
-              <div className="flex flex-col items-center gap-4 text-sm text-gray-600">
-                <CopyrightText />
-                <div className="flex items-center gap-2">
-                  <Heart className="w-3 h-3 text-red-500" />
-                  <span>Made with love for the developer community</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </footer>
-      );
-  }
-}
-
 function App() {
   const [navbarType, setNavbarType] = useState('Hamburger Left');
-  const [footerType, setFooterType] = useState('Centered');
   const [extraButtons, setExtraButtons] = useState([]); // Logo NOT enabled by default
   const [showButtonPanel, setShowButtonPanel] = useState(false);
 
@@ -710,13 +480,6 @@ function App() {
     'Hamburger Right',
     'Hamburger Left',
     'No Navbar'
-  ];
-
-  const footerTypes = [
-    'Centered',
-    'Left Aligned',
-    'Right Aligned',
-    'Simple'
   ];
 
   const availableExtraButtons = [
@@ -731,12 +494,6 @@ function App() {
     const currentIndex = navbarTypes.indexOf(navbarType);
     const nextIndex = (currentIndex + 1) % navbarTypes.length;
     setNavbarType(navbarTypes[nextIndex]);
-  };
-
-  const toggleFooter = () => {
-    const currentIndex = footerTypes.indexOf(footerType);
-    const nextIndex = (currentIndex + 1) % footerTypes.length;
-    setFooterType(footerTypes[nextIndex]);
   };
 
   const toggleExtraButton = (buttonId) => {
@@ -846,19 +603,7 @@ function App() {
         </button>
       </div>
 
-      {/* Footer Toggle Button */}
-      <div className="fixed bottom-4 right-4 z-50">
-        <button
-          onClick={toggleFooter}
-          className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl"
-        >
-          <RefreshCw className="w-5 h-5" />
-          Footer:
-          <span className="ml-2 px-2 py-1 bg-white/20 rounded text-sm">
-            {footerType}
-          </span>
-        </button>
-      </div>
+
 
       {/* Main Content */}
       <main className="w-screen px-4 sm:px-6 lg:px-8 py-12">
@@ -866,9 +611,7 @@ function App() {
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
             Current Navbar: <span className="text-purple-600">{navbarType}</span>
           </h2>
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">
-            Current Footer: <span className="text-blue-600">{footerType}</span>
-          </h3>
+
           <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
             {navbarType === 'Hamburger Left' 
               ? 'Hamburger menu on LEFT side only - NO central navigation elements. Logo and extra buttons on right.' 
@@ -903,10 +646,9 @@ function App() {
               <p className="text-gray-600 text-sm sm:text-base mb-6">
                 <strong>Key Features:</strong><br/>
                 1. <strong>NAVBAR TYPES</strong> - {navbarTypes.length} different navbar layouts<br/>
-                2. <strong>FOOTER TYPES</strong> - {footerTypes.length} different footer layouts<br/>
-                3. <strong>EXTRA BUTTONS</strong> - Customize with additional UI elements<br/>
+                2. <strong>EXTRA BUTTONS</strong> - Customize with additional UI elements<br/>
                 4. <strong>RESPONSIVE DESIGN</strong> - Works on all screen sizes<br/>
-                5. <strong>TOGGLE BUTTONS</strong> - Switch between navbar and footer types easily
+                5. <strong>TOGGLE BUTTONS</strong> - Switch between navbar types easily
               </p>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <button
@@ -915,12 +657,7 @@ function App() {
                 >
                   Next Navbar →
                 </button>
-                <button
-                  onClick={toggleFooter}
-                  className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium hover:opacity-90 transition-all duration-200 shadow-lg hover:shadow-xl w-screen sm:w-auto"
-                >
-                  Next Footer →
-                </button>
+
               </div>
             </div>
             <div className="text-center lg:text-right mt-4 lg:mt-0">
@@ -930,36 +667,7 @@ function App() {
           </div>
         </div>
 
-        {/* Footer Types Info */}
-        <div className="mt-12">
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center">Available Footer Types</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {footerTypes.map((type) => (
-              <div 
-                key={type} 
-                className={`p-4 rounded-lg border ${footerType === type ? 'bg-blue-50 border-blue-200' : 'bg-white border-gray-200'}`}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-medium text-gray-800">{type}</span>
-                  {footerType === type && (
-                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">Current</span>
-                  )}
-                </div>
-                <p className="text-sm text-gray-600">
-                  {type === 'Centered' && 'All content centered with newsletter, social links, and copyright'}
-                  {type === 'Left Aligned' && 'Three-column layout with content flowing from left to right'}
-                  {type === 'Right Aligned' && 'Three-column layout with content flowing from right to left'}
-                  {type === 'Simple' && 'Minimal design with just logo, links, and copyright'}
-                </p>
-                <div className="mt-2 text-xs text-blue-600">
-                  {type === 'Centered' ? 'Full featured' : 
-                   type === 'Simple' ? 'Minimal' : 
-                   'Multi-column'}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+
 
         {/* Navbar Types Info */}
         <div className="mt-12">
@@ -993,8 +701,7 @@ function App() {
         </div>
       </main>
 
-      {/* Footer Component */}
-      <Footer type={footerType} />
+
     </div>
   );
 }
