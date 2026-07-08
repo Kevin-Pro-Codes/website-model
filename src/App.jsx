@@ -674,7 +674,7 @@ function Footer({ type = 'Simple' }) {
 
 function App() {
   const [navbarType, setNavbarType] = useState('Hamburger Left');
-  const [footerType, setFooterType] = useState('Centered');
+  const [footerType, setFooterType] = useState('Simple');
   const [extraButtons, setExtraButtons] = useState([]); // Logo NOT enabled by default
   const [showButtonPanel, setShowButtonPanel] = useState(false);
 
@@ -688,10 +688,9 @@ function App() {
   ];
 
   const footerTypes = [
-    'Centered',
+    'Simple',
     'Left Aligned',
-    'Right Aligned',
-    'Simple'
+    'Right Aligned'
   ];
 
   const availableExtraButtons = [
@@ -921,15 +920,12 @@ function App() {
                   )}
                 </div>
                 <p className="text-sm text-gray-600">
-                  {type === 'Centered' && 'All content centered with newsletter, social links, and copyright'}
                   {type === 'Left Aligned' && 'Three-column layout with content flowing from left to right'}
                   {type === 'Right Aligned' && 'Three-column layout with content flowing from right to left'}
                   {type === 'Simple' && 'Minimal design with just logo, links, and copyright'}
                 </p>
                 <div className="mt-2 text-xs text-blue-600">
-                  {type === 'Centered' ? 'Full featured' : 
-                   type === 'Simple' ? 'Minimal' : 
-                   'Multi-column'}
+                  {type === 'Simple' ? 'Minimal' : 'Multi-column'}
                 </div>
               </div>
             ))}
